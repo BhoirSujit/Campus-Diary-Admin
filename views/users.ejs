@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+	<title>Campus Dairy Admin</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<link href="css/app.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="/dashbord">
+          <span class="align-middle">Campus Diary</span>
+        </a>
+
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Management
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="/dashbord">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item   active">
+						<a class="sidebar-link" href="/users">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link " href="posts.html">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Posts</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="communities.html">
+              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Communities</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="marketplace.html">
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Marketplace</span>
+            </a>
+					</li>
+
+					<li class="sidebar-header">
+						Responses
+					</li>
+
+					<li class="sidebar-item ">
+						<a class="sidebar-link" href="feedback.html">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Feedbacks</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="report.html">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reports</span>
+            </a>
+					</li>
+
+				</ul>
+
+				
+			</div>
+		</nav>
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle js-sidebar-toggle">
+          <i class="hamburger align-self-center"></i>
+        </a>
+
+        <div class="navbar-collapse collapse">
+            <ul class="navbar-nav navbar-align">
+
+                <button class="btn btn-danger">Logout</button>
+            </ul>
+        </div>
+			</nav>
+
+			<main class="content">
+				<div class="container-fluid p-0">
+
+					<h1 class="h3 mb-3">Users Management</h1>
+
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								
+								<div class="card-body">
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title mb-0">By Username</h5>
+                                        </div>
+                                        <div class="card-body">
+											<form onsubmit="return getDataById()">
+												<input id="intusername" type="text" name="uname" class="form-control mb-3" placeholder="Input">
+
+												<div>
+													<button type="submit" class="btn btn-primary">Find User</button>
+												</div>
+											</form>
+                                            
+                                        </div>
+										
+                                        
+                                       
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title mb-0">By Query</h5>
+                                        </div>
+                                        <div class="card-body">
+											<form action="/users/byquery" method="post">
+                                            <div class="mb-3">
+                                                <label class="form-label">Campus Name</label>
+                                                <select name="campusName" class="form-control">
+                    <option value="JSM Collage Alibag">JSM Collage Alibag</option>
+                    <option value="PNP Collage Alibag">PNP Collage Alibag</option>
+                  </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <label class="col-form-label">Sort by</label>
+                                                    <div class="ms-3">
+                                                        <label class="form-check">
+                                                            <input  type="radio" value="0"  name="sortop" class="form-check-input" checked="">
+                                                            <span class="form-check-label">By name</span>
+                                                        </label>
+                                                        <label class="form-check">
+                                                            <input  value="1" name="sortop" type="radio" class="form-check-input">
+                                                            <span class="form-check-label" >By reverse name</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div>
+												<button type="submit" class="btn btn-primary m-3">Search</button>
+											</div>
+                                           </form>
+                                        </div>
+									
+                                       
+                                        
+                                    </div>
+
+
+
+
+									<div class="col-12 col-lg-12 col-xxl-12 d-flex">
+										<div class="card flex-fill">
+											<div class="card-header">
+			
+												<h5 class="card-title mb-0">Users</h5>
+											</div>
+											<table class="table table-hover my-0">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th class="d-none d-xl-table-cell">Username</th>
+														<th class="d-none d-xl-table-cell">Campus</th>
+														<th class="d-none d-md-table-cell">Action</th>
+													</tr>
+												</thead>
+
+												
+												<tbody>
+													<% UsersData.forEach(element => { %>
+														<tr>
+															<td><%= element.data()['name'] %></td>
+															<td class="d-none d-xl-table-cell"><%= element.data()['username'] %></td>
+															<td class="d-none d-xl-table-cell"><%= element.data()['campus'] %></td>
+															<td class="d-none d-md-table-cell">
+
+
+																<button class="btn btn-success">View</button>
+																<button class="btn btn-danger">Ban</button>
+															</td>
+														</tr>
+													<% }) %>
+
+				
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</main>
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<a class="text-muted" href="" target="_blank"><strong>Campus Diary</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>A Campus Social Network</strong></a>								&copy;
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a class="text-muted" href="" target="_blank">Support</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="" target="_blank">Help Center</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="" target="_blank">Privacy</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="" target="_blank">Terms</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	<script>
+		function getDataById()
+		{
+			var username = document.getElementById('"intusername"').value;
+			var req = new XMLHttpRequest();
+
+			$.ajax({
+				type: 'GET',
+        url: '/byusername',
+        success: function(result) {
+             //$('#champ').html(result);
+			 console.log("i was successful"+ result);
+        }
+      });
+
+			return false
+		}
+	</script>
+
+	<script src="js/app.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+	
+
+</body>
+
+</html>
