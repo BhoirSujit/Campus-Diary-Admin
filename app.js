@@ -31,9 +31,11 @@ app.set('view engine', 'ejs')
 //routes
 app.use('/dashbord', require('./routes/dashbord'));
 app.use('/users', require('./routes/users'));
-// app.use('/marketplace', require('./routes/marketplace'));
+app.use('/marketplace', require('./routes/marketplace'));
 app.use('/posts', require('./routes/posts'));
-// app.use('/communities', require('./routes/communities'));
+app.use('/communities', require('./routes/communities'));
+app.use('/feedback', require('./routes/feedback'));
+app.use('/report', require('./routes/report'));
 
 
 

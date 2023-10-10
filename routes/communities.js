@@ -2,15 +2,13 @@ const express = require('express')
 
 const router = express.Router();
 
-
 const db = require('../config')
-const postsRef = db.collection("posts");
+const comRef = db.collection("community");
 
 router.use(express.static('public'));
 
 
-//db
-async function getPostDataByID(id, afterLoad) {
+async function getComDataByID(id, afterLoad) {
     try {
       //getting data
       const snapshot = await postsRef.where('id', '==', id).get()
@@ -22,19 +20,20 @@ async function getPostDataByID(id, afterLoad) {
     }
   }
 
-//show
+
+
 router
 .get("/", (req, res) => {
     const locals = {
       UsersData  : []
     }
-    res.render("posts", locals)
+    res.render("communities", locals)
   })
 .post('/',function(req, res){
 
-    let pid = req.body.id;
+    let cid = req.body.id;
 
-    getPostDataByID(pid, (snapshot) =>{
+    getComDataByID(cid, (snapshot) =>{
         
         var data = [];
 
@@ -47,7 +46,6 @@ router
           {
             snapshot.forEach(doc => {
                 console.log(doc.id, '=>', doc.data());
-                data.push(doc.data());
                 data.push(doc.data());
               });
               
@@ -63,8 +61,6 @@ router
     
         
   })
-
-
-
-
-module.exports = router
+  
+  
+  module.exports = router

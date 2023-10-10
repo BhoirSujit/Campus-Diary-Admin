@@ -12,7 +12,7 @@ router
     const locals = {
       UsersData  : []
     }
-    res.render("marketplace", locals)
+    res.render("report", locals)
   })
   
 

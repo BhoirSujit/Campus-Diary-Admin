@@ -18,9 +18,9 @@
 
 <body>
 	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
+			<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="/dashbord">
           <span class="align-middle">Campus Diary</span>
         </a>
 
@@ -30,31 +30,31 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="index.html">
+						<a class="sidebar-link" href="/dashbord">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="users.html">
+					<li class="sidebar-item   ">
+						<a class="sidebar-link" href="/users">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
             </a>
 					</li>
 
-					<li class="sidebar-item ">
-						<a class="sidebar-link " href="posts.html">
+					<li class="sidebar-item">
+						<a class="sidebar-link " href="/posts">
               <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Posts</span>
             </a>
 					</li>
 
-					<li class="sidebar-item  active">
-						<a class="sidebar-link" href="communities.html">
+					<li class="sidebar-item ">
+						<a class="sidebar-link" href="/communities">
               <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Communities</span>
             </a>
 					</li>
 
-					<li class="sidebar-item   ">
-						<a class="sidebar-link" href="marketplace.html">
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="/marketplace">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Marketplace</span>
             </a>
 					</li>
@@ -64,13 +64,13 @@
 					</li>
 
 					<li class="sidebar-item ">
-						<a class="sidebar-link" href="feedback.html">
+						<a class="sidebar-link" href="/feedback">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Feedbacks</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="report.html">
+						<a class="sidebar-link" href="/report">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reports</span>
             </a>
 					</li>
@@ -98,15 +98,15 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Community Management</h1>
+					<h1 class="h3 mb-3">Marketplace Management</h1>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								
-								<div class="card-body">
+								<div class="card-body row">
 
-                                    <div class="card">
+                                    <div class="card col-12 col-md-6">
                                         <div class="card-header">
                                             <h5 class="card-title mb-0">By ID</h5>
                                         </div>
@@ -114,7 +114,7 @@
                                             <input type="text" class="form-control mb-3" placeholder="Input">
                                             
 											<div>
-												<a href="#" class="btn btn-primary">Find Community</a>
+												<a href="#" class="btn btn-primary">Find Product</a>
 											</div>
                                         </div>
 										
@@ -122,7 +122,7 @@
                                        
                                     </div>
 
-                                    <div class="card">
+                                    <div class="card col-12 col-md-6">
                                         <div class="card-header">
                                             <h5 class="card-title mb-0">By Query</h5>
                                         </div>
@@ -147,8 +147,14 @@
                                                             <input name="radio-3" type="radio" class="form-check-input">
                                                             <span class="form-check-label">By reverse name</span>
                                                         </label>
-													
-                                                    
+														<label class="form-check">
+                                                            <input name="radio-3" type="radio" class="form-check-input" checked="">
+                                                            <span class="form-check-label">By date</span>
+                                                        </label>
+                                                        <label class="form-check">
+                                                            <input name="radio-3" type="radio" class="form-check-input">
+                                                            <span class="form-check-label">By reverse date</span>
+                                                        </label>
 
                                                     </div>
                                                 </div>
@@ -169,22 +175,24 @@
 										<div class="card flex-fill">
 											<div class="card-header">
 			
-												<h5 class="card-title mb-0">Communities</h5>
+												<h5 class="card-title mb-0">Product</h5>
 											</div>
 											<table class="table table-hover my-0">
 												<thead>
 													<tr>
 														<th>Name</th>
-														<th class="d-none d-xl-table-cell">Admin Username</th>
+														<th class="d-none d-xl-table-cell">Seller Username</th>
 														<th class="d-none d-xl-table-cell">Community</th>
+                                                        <th class="d-none d-xl-table-cell">Posting Date</th>
 														<th class="d-none d-md-table-cell">Action</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-														<td>Coaders</td>
-														<td class="d-none d-xl-table-cell">_sujit004</td>
+														<td>science book</td>
+														<td class="d-none d-xl-table-cell">+sujit004</td>
 														<td class="d-none d-xl-table-cell">JSM Collage Alibag</td>
+                                                        <td class="d-none d-xl-table-cell">23/09/2023</td>
 														<td class="d-none d-md-table-cell">
 															<button class="btn btn-success">View</button>
 															<button class="btn btn-danger">Remove</button>
