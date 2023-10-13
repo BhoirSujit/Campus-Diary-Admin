@@ -26,6 +26,7 @@ app.use(express.static('public'));
 //app.set('layouts', '/layouts/main');
 app.set('view engine', 'ejs')
 
+app.use('/', require('./routes/dashbord'));
 
 
 //routes
