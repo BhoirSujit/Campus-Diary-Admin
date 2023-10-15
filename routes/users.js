@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 const db = require('../config')
-const userRef = db.collection("users");
+const Ref = db.collection("users");
 
 router.use(express.static('public'))
 
@@ -22,12 +22,12 @@ router.use(express.static('public'))
 
 
 
-async function getUserDataByUsername(username, afterLoad) {
+//db
+async function getDataByID(id, afterLoad) {
   try {
     //getting data
-
-    const snapshot = await userRef.where('username', '==', username).get()
-    afterLoad(snapshot) 
+    const snapshot = await Ref.where('id', '==', id).get()
+    afterLoad(snapshot)
 
   }
   catch (error) {
@@ -35,24 +35,11 @@ async function getUserDataByUsername(username, afterLoad) {
   }
 }
 
-async function getUserDataByQuery(campusname,sortby, afterLoad) {
+async function getDataByQuery(campus, sort, afterLoad) {
   try {
-    //getting data
-    
-
-    if (sortby == 0)
-    {
-      const snapshot = await userRef.where('campus', "==", campusname+"").orderBy("name").get();
-      afterLoad(snapshot) 
-    }
-    else
-    {
-      const snapshot = await userRef.where('campus', "==", campusname+"").orderBy("name","desc").get();
-      afterLoad(snapshot) 
-    }
-
-    
-   
+    //getting data //add 
+    const snapshot = await Ref.where('campus', '==', campus).orderBy('name', (sort == '0') ? 'ASC' : 'DESC').get()
+    afterLoad(snapshot)
 
   }
   catch (error) {
@@ -68,66 +55,72 @@ router.get("/", (req, res) => {
     UsersData  : []
   }
   res.render("users", locals)
-});
+})
+.post('/', function (req, res) {
 
-router.post('/byusername', (req, res) => {
-    console.log(req.body.uname)
-    getUserDataByUsername(req.body.uname,afterLoad= (snapshot) =>
-        {
-            var data = [];
+  if (req.body.type == 'q') {
+    let campus = req.body.campus;
+    let sort = req.body.sort;
 
-            console.log('snapshote are : '+snapshot);
-            if (snapshot.empty) {
-                console.log('No matching documents.');
-                
-              } 
-            else
-              {
-                snapshot.forEach(doc => {
-                    console.log(doc.id, '=>', doc.data());
-                    
-                  });
-                  data = snapshot;
-               
-              }
-            res.render("users", {
-                UsersData : data
-            })
+    console.log('getting data for users : '+campus + " " + sort);
+
+
+    getDataByQuery(campus, sort, (snapshot) => {
+
+      var data = [];
+
+      console.log('snapshote are : ' + snapshot);
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+
+      }
+      else {
+        snapshot.forEach(doc => {
+          console.log(doc.id, '=>', doc.data());
+          data.push(doc.data());
+
         });
-    
-})
-
-router.post('/byuname', (req, res) => {
-  console.log('i was hited' + req.body.uname)
-  res.render("users", {m:"hello"})
-  
-  
-})
 
 
-router.post('/byquery', (req, res) => {
-  console.log(req.body.campusName + " " + req.body.sortop);
-  getUserDataByQuery(req.body.campusName, req.body.sortop, afterLoad = (snapshot) => {
-    var data = [];
+      }
+      res.send({
+        postdata: data
+      })
+    })
+  }
+  else {
+    let pid = req.body.id;
 
-            console.log('snapshote are : '+snapshot);
-            if (snapshot.empty) {
-                console.log('No matching documents.');
-                
-              } 
-            else
-              {
-                snapshot.forEach(doc => {
-                    console.log(doc.id, '=>', doc.data());
-                    
-                  });
-                  data = snapshot;
-               
-              }
-            res.render("users", {
-                UsersData : data
-            })
-  })
+    getDataByID(pid, (snapshot) => {
+
+      var data = [];
+
+      console.log('snapshote are : ' + snapshot);
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+
+      }
+      else {
+        snapshot.forEach(doc => {
+          console.log(doc.id, '=>', doc.data());
+          data.push(doc.data());
+
+        });
+
+
+      }
+      res.send({
+        m: pid,
+        postdata: data
+      })
+    })
+  }
+
+
+
+
+
+
 })
 
 // //getUserData();

@@ -109,140 +109,125 @@
 
 					<h1 class="h3 mb-3">Users Management</h1>
 
-				<!-- Button to Open the Modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-	Open modal
-  </button>
-  
-  <!-- The Modal -->
-  <div class="modal" id="myModal">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-  
-		<!-- Modal Header -->
-		<div class="modal-header">
-		  <h4 class="modal-title">User Data</h4>
-		  <button type="button" class="close" data-dismiss="modal">&times;</button>
-		</div>
-  
-		<!-- Modal body -->
-		<div class="modal-body">
-		  <div id = "modelbody"></div>
-		</div>
-  
-		<!-- Modal footer -->
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-danger" data-dismiss="modal">Ban</button>
-		 
-		</div>
-  
-	  </div>
-	</div>
-  </div>
-					
-
-
-
-
-
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
-								
+
 								<div class="card-body row">
 
-                                    <div class="card col-12 col-md-6">
-                                        <div class="card-header">
-                                            <h5 class="card-title mb-0">By Username</h5>
-                                        </div>
-                                        <div class="card-body">
-											<form onsubmit="return getDataById()">
-												<input id="intusername" type="text" name="uname" class="form-control mb-3" placeholder="Input">
+									<div class="card col-12 col-md-6">
+										<div class="card-header">
+											<h5 class="card-title mb-0">By ID</h5>
+										</div>
+										<div class="card-body">
+											<form onsubmit="return getById()">
+												<input type="text" id="postid" class="form-control mb-3"
+													placeholder="Input">
 
 												<div>
-													<button type="submit" class="btn btn-primary">Find User</button>
+													<Button type="submit" class="btn btn-primary">Find User</a>
 												</div>
 											</form>
-                                            
-                                        </div>
-										
-                                        
-                                       
-                                    </div>
 
-                                    <div class="card col-12 col-md-6">
-                                        <div class="card-header">
-                                            <h5 class="card-title mb-0">By Query</h5>
-                                        </div>
-                                        <div class="card-body">
-											<form action="/users/byquery" method="post">
-                                            <div class="mb-3">
-                                                <label class="form-label">Campus Name</label>
-                                                <select name="campusName" class="form-control">
-                    <option value="JSM Collage Alibag">JSM Collage Alibag</option>
-                    <option value="PNP Collage Alibag">PNP Collage Alibag</option>
-                  </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <div class="row">
-                                                    <label class="col-form-label">Sort by</label>
-                                                    <div class="ms-3">
-                                                        <label class="form-check">
-                                                            <input  type="radio" value="0"  name="sortop" class="form-check-input" checked="">
-                                                            <span class="form-check-label">By name</span>
-                                                        </label>
-                                                        <label class="form-check">
-                                                            <input  value="1" name="sortop" type="radio" class="form-check-input">
-                                                            <span class="form-check-label" >By reverse name</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-											<div>
-												<button type="submit" class="btn btn-primary m-3">Search</button>
+										</div>
+
+
+
+									</div>
+
+									<div class="card col-12 col-md-6">
+										<div class="card-header">
+											<h5 class="card-title mb-0">By Query</h5>
+										</div>
+										<div class="card-body">
+											<form onsubmit="return getByQuery()">
+												<div class="mb-3">
+													<label class="form-label">Campus Name</label>
+													<select id="campusName" class="form-control">
+														<option value="JSM Collage Alibag">JSM Collage Alibag</option>
+														<option value="PNP Collage Alibag">PNP Collage Alibag</option>
+													</select>
+												</div>
+												<div class="mb-3">
+													<div class="row">
+														<label class="col-form-label">Sort by</label>
+														<div class="ms-3">
+															<label class="form-check">
+																<input value="0" name="radio-3" type="radio" class="form-check-input" checked>
+																<span class="form-check-label">By Name (A->Z)</span>
+															</label>
+															<label class="form-check">
+																<input value="1" name="radio-3" type="radio" class="form-check-input">
+																<span class="form-check-label">By Name (Z->A)</span>
+															</label>
+	
+														</div>
+													</div>
+												</div>
+												<div>
+													<button type="submit" class="btn btn-primary m-3">Search</button>
+												</div>
+											</form>
+
+											
+
+										</div>
+
+
+									</div>
+
+
+									<!-- The Modal -->
+									<div class="modal" id="myModal">
+										<div class="modal-dialog">
+											<div class="modal-content">
+
+												<!-- Modal Header -->
+												<div class="modal-header">
+													<h4 class="modal-title">User Data</h4>
+													<button type="button" class="close"
+														data-dismiss="modal">&times;</button>
+												</div>
+
+												<!-- Modal body -->
+												<div class="modal-body">
+													<div id="modelbody"></div>
+												</div>
+
+												<!-- Modal footer -->
+												<div class="modal-footer">
+													<button type="button" class="btn btn-danger"
+														data-dismiss="modal">Remove</button>
+
+												</div>
+
 											</div>
-                                           </form>
-                                        </div>
-									
-                                       
-                                        
-                                    </div>
+										</div>
+									</div>
+
 
 
 
 									<div class="col-12 col-lg-12 col-xxl-12 d-flex">
 										<div class="card flex-fill">
 											<div class="card-header">
-			
+
 												<h5 class="card-title mb-0">Users</h5>
 											</div>
 											<table class="table table-hover my-0">
 												<thead>
 													<tr>
 														<th>Name</th>
-														<th class="d-none d-xl-table-cell">Username</th>
+														<th class="d-none d-xl-table-cell">User Name</th>
 														<th class="d-none d-xl-table-cell">Campus</th>
 														<th class="d-none d-md-table-cell">Action</th>
 													</tr>
 												</thead>
+												<tbody id="datacontainer">
+													<div>
 
-												
-												<tbody>
-													<% UsersData.forEach(element => { %>
-														<tr>
-															<td><%= element.data()['name'] %></td>
-															<td class="d-none d-xl-table-cell"><%= element.data()['username'] %></td>
-															<td class="d-none d-xl-table-cell"><%= element.data()['campus'] %></td>
-															<td class="d-none d-md-table-cell">
+													</div>
 
-
-																<button class="btn btn-success">View</button>
-																<button class="btn btn-danger">Ban</button>
-															</td>
-														</tr>
-													<% }) %>
-
-				
 												</tbody>
 											</table>
 										</div>
@@ -287,43 +272,122 @@
 		</div>
 	</div>
 
-	<script>
-
-		
-
-		function getDataById()
-		{
-			var username = document.getElementById('"intusername"').value;
-			var req = new XMLHttpRequest();
-
-			$.ajax({
-				type: 'GET',
-        url: '/byusername',
-        success: function(res) {
-             //$('#champ').html(result);
-			 console.log("i was successful"+ result);
-			 console.log("pid = "+res.m+"data are : "+ res.postdata);
-						let data = JSON.parse(JSON.stringify(res.postdata));
-						for (var i = 0; i < data.length; i++ )
-						{
-							console.log(data[i]);
-							//load data here
-							datacontainer.innerHTML = '<tr><td>'+data[i]["title"]+'</td><td class="d-none d-xl-table-cell">'+data[i]["authUName"]+'</td><td class="d-none d-xl-table-cell">'+data[i]["communityName"]+'</td><td class="d-none d-md-table-cell"><button class="btn btn-success">View</button><button class="btn btn-danger">Remove</button></td></tr>"';
-
-
-							
-							//
-						}
-        }
-      });
-
-			return false
-		}
-	</script>
 
 	<script src="js/app.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script>
+		var datacontainer = document.getElementById('datacontainer');
+		var modelbody = document.getElementById('modelbody');
+		var data = null;
 
+
+
+		function getById() {
+			let pid = document.getElementById('postid').value;
+
+
+			$.ajax(
+				{
+					url: "/users",
+					method: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({'type' : 'i', 'id': pid }),
+					success: function (res) {
+						console.log("pid = " + res.m + "data are : " + res.postdata);
+						let tabledata = "";
+
+						data = JSON.parse(JSON.stringify(res.postdata));
+						console.log("data are : " + data);
+						for (var i = 0; i < data.length; i++) {
+
+							console.log(data[i]);
+							//load data here
+							tabledata += '<tr><td>' + data[i]["name"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["username"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["campus"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button onclick="return banUser("'+data[i]["id"]+'")" class="btn btn-danger ms-2">Remove</button></td></tr>';
+
+							//
+
+
+						}
+						datacontainer.innerHTML = tabledata;
+					}
+				}
+			)
+			return false;
+
+		}
+
+		function getByQuery() {
+		
+			let campus = document.getElementById('campusName').value
+			
+			let sort = document.querySelector('input[name="radio-3"]:checked').value
+
+			console.log('getting data with campus and sort are : '+campus+sort)
+
+
+			$.ajax(
+				{
+					url: "/users",
+					method: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({ 'type' : 'q', 'campus' : campus, 'sort' : sort }),
+					success: function (res) {
+						console.log("pid = " + res.m + "data are : " + res.postdata);
+						let tabledata = "";
+
+						data = JSON.parse(JSON.stringify(res.postdata));
+						console.log("data are : " + data);
+						for (let i = 0; i < data.length; i++) {
+
+							console.log(data[i]);
+							//load data here
+							tabledata += '<tr><td>' + data[i]["name"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["username"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["campus"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button onclick="return banUser(\'' + data[i]["id"]+ '\')" class="btn btn-danger ms-2">Remove</button></td></tr>';
+
+
+
+							//
+
+
+						}
+						datacontainer.innerHTML = tabledata;
+					}
+				}
+			)
+			return false;
+
+		}
+
+		function addData(position) {
+			console.log("data filling : " + position)
+			let datac = "";
+			datac += "<p>id : " + data[position]["id"] + "<p>";
+			datac += "<p>Profilepic : ";
+				datac += "<a href='https://firebasestorage.googleapis.com/v0/b/campus-diary-33019.appspot.com/o/ProfilePictures%2F" + data[position]["profilePicId"] + ".jpg?alt=media' target='_blank' >view</a>";
+			datac += "<p>";
+
+			
+			datac += "<p>Name : " + data[position]["name"] + "<p>";
+			datac += "<p>Username : " + data[position]["username"] + "<p>";
+			datac += "<p>Gender : " + data[position]["gender"]+ "<p>";
+			datac += "<p>Email : " + data[position]["email"] + "<p>";
+			datac += "<p>Campus : " + data[position]["campus"] + "<p>";
+			
+
+			datac += "<p>Interests : " + data[position]["interests"] + "<p>";
+			modelbody.innerHTML = datac;
+			return false;
+		}
+
+		function banUser(id)
+		{
+			console.log("i got call");
+			var result = window.confirm("Do you really want to ban this user?");
+            if (result == true) {
+               //remove user
+            } 
+			return false;
+		}
+	</script>
 	
 
 </body>
