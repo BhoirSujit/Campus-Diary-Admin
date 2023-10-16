@@ -196,8 +196,8 @@
 
 												<!-- Modal footer -->
 												<div class="modal-footer">
-													<button type="button" class="btn btn-danger"
-														data-dismiss="modal">Remove</button>
+													<button type="button" onclick="return doBanCall()" class="btn btn-danger"
+														data-dismiss="modal">Ban</button>
 
 												</div>
 
@@ -280,6 +280,23 @@
 		var modelbody = document.getElementById('modelbody');
 		var data = null;
 
+		function loadData()
+		{
+			let tabledata = "";
+						console.log("data are : " + data);
+						for (let i = 0; i < data.length; i++) {
+
+							console.log(data[i]);
+							//load data here
+							tabledata += '<tr><td>' + data[i]["name"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["username"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["campus"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button onclick="return banUser(\''+data[i]["id"]+'\')" class="btn btn-danger ms-2">Ban</button></td></tr>';
+
+							//
+
+
+						}
+						datacontainer.innerHTML = tabledata;
+		}
+
 
 
 		function getById() {
@@ -294,21 +311,10 @@
 					data: JSON.stringify({'type' : 'i', 'id': pid }),
 					success: function (res) {
 						console.log("pid = " + res.m + "data are : " + res.postdata);
-						let tabledata = "";
+						
 
 						data = JSON.parse(JSON.stringify(res.postdata));
-						console.log("data are : " + data);
-						for (var i = 0; i < data.length; i++) {
-
-							console.log(data[i]);
-							//load data here
-							tabledata += '<tr><td>' + data[i]["name"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["username"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["campus"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button onclick="return banUser("'+data[i]["id"]+'")" class="btn btn-danger ms-2">Remove</button></td></tr>';
-
-							//
-
-
-						}
-						datacontainer.innerHTML = tabledata;
+						loadData();
 					}
 				}
 			)
@@ -336,20 +342,8 @@
 						let tabledata = "";
 
 						data = JSON.parse(JSON.stringify(res.postdata));
-						console.log("data are : " + data);
-						for (let i = 0; i < data.length; i++) {
-
-							console.log(data[i]);
-							//load data here
-							tabledata += '<tr><td>' + data[i]["name"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["username"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["campus"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button onclick="return banUser(\'' + data[i]["id"]+ '\')" class="btn btn-danger ms-2">Remove</button></td></tr>';
-
-
-
-							//
-
-
-						}
-						datacontainer.innerHTML = tabledata;
+						
+						loadData();
 					}
 				}
 			)
@@ -357,7 +351,9 @@
 
 		}
 
+		let hi = 0;
 		function addData(position) {
+			hi = position;
 			console.log("data filling : " + position)
 			let datac = "";
 			datac += "<p>id : " + data[position]["id"] + "<p>";
@@ -377,13 +373,30 @@
 			modelbody.innerHTML = datac;
 			return false;
 		}
+		function doBanCall()
+		{
+			return banUser(data[hi]["id"]);
+		}
 
 		function banUser(id)
 		{
 			console.log("i got call");
-			var result = window.confirm("Do you really want to ban this user?");
+			var result = window.confirm("Do you really want to ban "+id+"?");
             if (result == true) {
                //remove user
+			   console.log("banned users");
+			   $.ajax(
+				{
+					url: "/users",
+					method: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify({'type' : 'r', 'id': id }),
+					success: function (res) {
+						loadData();
+					}
+				}
+			)
+			return false;
             } 
 			return false;
 		}

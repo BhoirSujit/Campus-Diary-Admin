@@ -155,14 +155,16 @@
 														<label class="col-form-label">Sort by</label>
 														<div class="ms-3">
 															<label class="form-check">
-																<input value="0" name="radio-3" type="radio" class="form-check-input" checked>
-																<span class="form-check-label">By date</span>
+																<input value="0" name="radio-3" type="radio"
+																	class="form-check-input" checked>
+																<span class="form-check-label">Latest First</span>
 															</label>
 															<label class="form-check">
-																<input value="1" name="radio-3" type="radio" class="form-check-input">
-																<span class="form-check-label">By reverse date</span>
+																<input value="1" name="radio-3" type="radio"
+																	class="form-check-input">
+																<span class="form-check-label">Older First</span>
 															</label>
-	
+
 														</div>
 													</div>
 												</div>
@@ -171,7 +173,7 @@
 												</div>
 											</form>
 
-											
+
 
 										</div>
 
@@ -198,8 +200,8 @@
 
 												<!-- Modal footer -->
 												<div class="modal-footer">
-													<button type="button" class="btn btn-danger"
-														data-dismiss="modal">Remove</button>
+													<button type="button" onclick="return doAction()"
+														class="btn btn-danger" data-dismiss="modal">Remove</button>
 
 												</div>
 
@@ -284,6 +286,21 @@
 		var modelbody = document.getElementById('modelbody');
 		var data = null;
 
+		function loadData() {
+			let tabledata = "";
+			console.log("data are : " + data);
+			for (var i = 0; i < data.length; i++) {
+
+				console.log(data[i]);
+				//load data here
+				tabledata += '<tr><td>' + data[i]["title"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["authUName"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["communityName"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button onclick="return  removePost(\''+data[i]["id"]+'\')" class="btn btn-danger ms-2">Remove</button></td></tr>';
+				//
+
+
+			}
+			datacontainer.innerHTML = tabledata;
+		}
+
 
 
 		function getPostsById() {
@@ -295,26 +312,11 @@
 					url: "/posts",
 					method: 'POST',
 					contentType: 'application/json',
-					data: JSON.stringify({'type' : 'i', 'id': pid }),
+					data: JSON.stringify({ 'type': 'i', 'id': pid }),
 					success: function (res) {
 						console.log("pid = " + res.m + "data are : " + res.postdata);
-						let tabledata = "";
-
 						data = JSON.parse(JSON.stringify(res.postdata));
-						console.log("data are : " + data);
-						for (var i = 0; i < data.length; i++) {
-
-							console.log(data[i]);
-							//load data here
-							tabledata += '<tr><td>' + data[i]["title"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["authUName"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["communityName"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button class="btn btn-danger ms-2">Remove</button></td></tr>';
-
-
-
-							//
-
-
-						}
-						datacontainer.innerHTML = tabledata;
+						loadData();
 					}
 				}
 			)
@@ -323,12 +325,12 @@
 		}
 
 		function getByQuery() {
-		
+
 			let campus = document.getElementById('campusName').value
-			
+
 			let sort = document.querySelector('input[name="radio-3"]:checked').value
 
-			console.log('getting data with campus and sort are : '+campus+sort)
+			console.log('getting data with campus and sort are : ' + campus + sort)
 
 
 			$.ajax(
@@ -336,26 +338,13 @@
 					url: "/posts",
 					method: 'POST',
 					contentType: 'application/json',
-					data: JSON.stringify({ 'type' : 'q', 'campus' : campus, 'sort' : sort }),
+					data: JSON.stringify({ 'type': 'q', 'campus': campus, 'sort': sort }),
 					success: function (res) {
 						console.log("pid = " + res.m + "data are : " + res.postdata);
-						let tabledata = "";
-
 						data = JSON.parse(JSON.stringify(res.postdata));
-						console.log("data are : " + data);
-						for (var i = 0; i < data.length; i++) {
 
-							console.log(data[i]);
-							//load data here
-							tabledata += '<tr><td>' + data[i]["title"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["authUName"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["communityName"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button class="btn btn-danger ms-2">Remove</button></td></tr>';
-
-
-
-							//
-
-
-						}
-						datacontainer.innerHTML = tabledata;
+						
+						loadData();
 					}
 				}
 			)
@@ -363,7 +352,10 @@
 
 		}
 
+		var hi = 0;
+
 		function addData(position) {
+			hi = position;
 			console.log("data filling : " + position)
 			let datac = "";
 			datac += "<p>Images : ";
@@ -387,6 +379,35 @@
 			modelbody.innerHTML = datac;
 			return false;
 		}
+
+
+		function doAction() {
+			return removePost(data[hi]["id"])
+		}
+
+		function removePost(postid) {
+			console.log("i got call");
+			var result = window.confirm("Do you really want to remove post with id " + postid + "? you cant recover that post again");
+			if (result == true) {
+				//remove user
+				console.log("remove post");
+				$.ajax(
+					{
+						url: "/posts",
+						method: 'POST',
+						contentType: 'application/json',
+						data: JSON.stringify({ 'type': 'r', 'id': postid }),
+						success: function (res) {
+
+							loadData();
+						}
+					}
+				)
+				return false;
+			}
+			return false;
+		}
+
 	</script>
 
 </body>

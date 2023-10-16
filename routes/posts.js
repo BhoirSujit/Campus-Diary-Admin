@@ -22,6 +22,19 @@ async function getPostDataByID(id, afterLoad) {
   }
 }
 
+async function removeById(id, afterLoad)
+{
+  try {
+    //getting data
+    const snapshot = await postsRef.doc(id).delete()  
+    afterLoad(snapshot)
+
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
 async function getPostDataByQuery(campus, sort, afterLoad) {
   try {
     //getting data //add .where('campus', '==', campus)
@@ -74,7 +87,7 @@ router
         })
       })
     }
-    else {
+    else if (req.body.type == 'i') {
       let pid = req.body.id;
 
       getPostDataByID(pid, (snapshot) => {
@@ -99,6 +112,12 @@ router
           m: pid,
           postdata: data
         })
+      })
+    }
+    else if (req.body.type == 'r')
+    {
+      removeById(req.body.id, (snapshot) => {
+          res.send();
       })
     }
 
