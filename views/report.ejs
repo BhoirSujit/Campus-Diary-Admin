@@ -12,6 +12,12 @@
 
 	<title>Campus Dairy Admin</title>
 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -21,8 +27,8 @@
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="/dashbord">
-          <span class="align-middle">Campus Diary</span>
-        </a>
+					<span class="align-middle">Campus Diary</span>
+				</a>
 
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
@@ -31,32 +37,35 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/dashbord">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
+							<i class="align-middle" data-feather="sliders"></i> <span
+								class="align-middle">Dashboard</span>
+						</a>
 					</li>
 
 					<li class="sidebar-item  ">
 						<a class="sidebar-link" href="/users">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
-            </a>
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
+						</a>
 					</li>
 
 					<li class="sidebar-item">
 						<a class="sidebar-link " href="/posts">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Posts</span>
-            </a>
+							<i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Posts</span>
+						</a>
 					</li>
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/communities">
-              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Communities</span>
-            </a>
+							<i class="align-middle" data-feather="user-plus"></i> <span
+								class="align-middle">Communities</span>
+						</a>
 					</li>
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/marketplace">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Marketplace</span>
-            </a>
+							<i class="align-middle" data-feather="book"></i> <span
+								class="align-middle">Marketplace</span>
+						</a>
 					</li>
 
 					<li class="sidebar-header">
@@ -65,34 +74,35 @@
 
 					<li class="sidebar-item ">
 						<a class="sidebar-link" href="/feedback">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Feedbacks</span>
-            </a>
+							<i class="align-middle" data-feather="sliders"></i> <span
+								class="align-middle">Feedbacks</span>
+						</a>
 					</li>
 
 					<li class="sidebar-item  active">
 						<a class="sidebar-link" href="/report">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Reports</span>
-            </a>
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Reports</span>
+						</a>
 					</li>
 
 				</ul>
 
-				
+
 			</div>
 		</nav>
 
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
+					<i class="hamburger align-self-center"></i>
+				</a>
 
-        <div class="navbar-collapse collapse">
-            <ul class="navbar-nav navbar-align">
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
 
-                <button class="btn btn-danger">Logout</button>
-            </ul>
-        </div>
+						<button class="btn btn-danger">Logout</button>
+					</ul>
+				</div>
 			</nav>
 
 			<main class="content">
@@ -100,81 +110,60 @@
 
 					<h1 class="h3 mb-3">Reports</h1>
 
+					<!-- The Modal -->
+					<div class="modal" id="myModal">
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">Post Data</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+
+								<!-- Modal body -->
+								<div class="modal-body">
+									<div id="modelbody"></div>
+								</div>
+
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">Close</button>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
-								
+
 								<div class="card-body">
-
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5 class="card-title mb-0">By Query</h5>
-                                        </div>
-                                        <div class="card-body">
-                
-                                            <div class="mb-3">
-                                                <label class="form-label">Campus Name</label>
-                                                <select class="form-control">
-                    <option>JSM Collage Alibag</option>
-                    <option>PNP Collage Alibag</option>
-                  </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <div class="row">
-                                                    <label class="col-form-label">Sort by</label>
-                                                    <div class="ms-3">
-                                
-														<label class="form-check">
-                                                            <input name="radio-3" type="radio" class="form-check-input" checked="">
-                                                            <span class="form-check-label">By date</span>
-                                                        </label>
-                                                        <label class="form-check">
-                                                            <input name="radio-3" type="radio" class="form-check-input">
-                                                            <span class="form-check-label">By reverse date</span>
-                                                        </label>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-											<div>
-												<a href="#" class="btn btn-primary m-3">Search</a>
-											</div>
-                                           
-                                        </div>
-                                       
-                                        
-                                    </div>
-
-
-
 
 									<div class="col-12 col-lg-12 col-xxl-12 d-flex">
 										<div class="card flex-fill">
 											<div class="card-header">
-			
+
 												<h5 class="card-title mb-0">Reports</h5>
 											</div>
 											<table class="table table-hover my-0">
 												<thead>
 													<tr>
 														<th>Context</th>
-														<th class="d-none d-xl-table-cell">Sender Username</th>
-                                                        <th class="d-none d-xl-table-cell">Type</th>
-                                                        <th class="d-none d-xl-table-cell">Posting Date</th>
+														<th class="d-none d-xl-table-cell">Writter ID</th>
+														<th class="d-none d-xl-table-cell">Type</th>
+														<th class="d-none d-xl-table-cell">Posting Date</th>
 														<th class="d-none d-md-table-cell">Action</th>
 													</tr>
 												</thead>
-												<tbody>
-													<tr>
-														<td>he's name are un appropriate</td>
-														<td class="d-none d-xl-table-cell">_sujit004</td>
-                                                        <td class="d-none d-xl-table-cell">user-report</td>
-                                                        <td class="d-none d-xl-table-cell">23/09/2023</td>
-														<td class="d-none d-md-table-cell">
-															<button class="btn btn-success">View</button>
-															
-														</td>
-													</tr>
+												<tbody id="datacontainer">
+													<div>
+
+													</div>
+
 												</tbody>
 											</table>
 										</div>
@@ -194,7 +183,9 @@
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="" target="_blank"><strong>Campus Diary</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>A Campus Social Network</strong></a>								&copy;
+								<a class="text-muted" href="" target="_blank"><strong>Campus Diary</strong></a> - <a
+									class="text-muted" href="https://adminkit.io/" target="_blank"><strong>A Campus
+										Social Network</strong></a> &copy;
 							</p>
 						</div>
 						<div class="col-6 text-end">
@@ -220,8 +211,71 @@
 	</div>
 
 	<script src="js/app.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		var datacontainer = document.getElementById('datacontainer');
+		var modelbody = document.getElementById('modelbody');
+		var data = null;
 
-	
+		function loadData() {
+			let tabledata = "";
+			console.log("data are : " + data);
+			for (var i = 0; i < data.length; i++) {
+
+				console.log(data[i]);
+				//load data here
+				tabledata += '<tr><td>' + data[i]["context"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["writterid"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["type"] + '</td><td class="d-none d-xl-table-cell">' +new Date(data[i]["submitDate"]._seconds * 1000).toLocaleString()  + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button></td></tr>';
+				//
+
+
+			}
+			datacontainer.innerHTML = tabledata;
+		}
+
+		function doCall()
+		{
+			
+		
+		$.ajax(
+			{
+				url: "/report",
+				method: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify({ 'type': 'q' }),
+				success: function (res) {
+					console.log("pid = " + res.m + "data are : " + res.postdata);
+					data = JSON.parse(JSON.stringify(res.postdata));
+
+
+					loadData();
+				}
+			}
+		)
+		}
+
+		doCall();
+
+
+
+		var hi = 0;
+
+		function addData(position) {
+			hi = position;
+			console.log("data filling : " + position)
+			let datac = "";
+			datac += "<p>type : " + data[position]["type"] + "<p>";
+			datac += "<p>Context : " + data[position]["context"] + "<p>";
+			datac += "<p>id : " + data[position]["id"] + "<p>";
+			datac += "<p>Creation Date : " + new Date(data[position]["submitDate"]._seconds * 1000).toLocaleString() + "<p>";
+			datac += "<p>Writter id : " + data[position]["writterid"] + "<p>";
+			modelbody.innerHTML = datac;
+			return false;
+		}
+
+	</script>
+
+
 
 </body>
 
