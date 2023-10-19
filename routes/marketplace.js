@@ -32,6 +32,19 @@ async function getDataByQuery(campus, sort, afterLoad) {
   }
 }
 
+async function removeById(id, afterLoad)
+{
+  try {
+    //getting data
+    const snapshot = await Ref.doc(id).delete()  
+    afterLoad(snapshot)
+
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
 router
 .get("/", (req, res) => {
     const locals = {
@@ -71,7 +84,7 @@ router
         })
       })
     }
-    else {
+    else if (req.body.type == 'i') {
       let pid = req.body.id;
 
       getDataByID(pid, (snapshot) => {
@@ -93,8 +106,15 @@ router
 
         }
         res.send({
+          m: pid,
           postdata: data
         })
+      })
+    }
+    else if (req.body.type == 'r')
+    {
+      removeById(req.body.id, (snapshot) => {
+          res.send();
       })
     }
 
@@ -104,6 +124,7 @@ router
 
 
   })
+
   
 
 module.exports = router

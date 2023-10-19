@@ -72,16 +72,11 @@
 						Responses
 					</li>
 
-					<li class="sidebar-item ">
-						<a class="sidebar-link" href="/feedback">
-							<i class="align-middle" data-feather="sliders"></i> <span
-								class="align-middle">Feedbacks</span>
-						</a>
-					</li>
+					
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="/report">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Reports</span>
+							<i class="align-middle" data-feather="slash"></i> <span class="align-middle">Reports</span>
 						</a>
 					</li>
 
@@ -199,8 +194,8 @@
 
 												<!-- Modal footer -->
 												<div class="modal-footer">
-													<button type="button" class="btn btn-danger"
-														data-dismiss="modal">Remove</button>
+													<button type="button" onclick="return doAction()"
+														class="btn btn-danger" data-dismiss="modal">Remove</button>
 
 												</div>
 
@@ -308,7 +303,7 @@
 
 							console.log(data[i]);
 							//load data here
-							tabledata += '<tr><td>' + data[i]["name"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["sellerName"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["campus"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button class="btn btn-danger ms-2">Remove</button></td></tr>';
+							tabledata += '<tr><td>' + data[i]["name"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["sellerName"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["campus"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button onclick="return  removePost(\''+data[i]["id"]+'\')" class="btn btn-danger ms-2">Remove</button></td></tr>';
 
 
 
@@ -349,7 +344,7 @@
 
 							console.log(data[i]);
 							//load data here
-							tabledata += '<tr><td>' + data[i]["name"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["sellerName"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["campus"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button class="btn btn-danger ms-2">Remove</button></td></tr>';
+							tabledata += '<tr><td>' + data[i]["name"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["sellerName"] + '</td><td class="d-none d-xl-table-cell">' + data[i]["campus"] + '</td><td class="d-none d-md-table-cell"><button class="btn btn-success" onclick="return addData(' + i + ')" data-toggle="modal" data-target="#myModal">View</button><button onclick="return  removePost(\''+data[i]["id"]+'\')" class="btn btn-danger ms-2">Remove</button></td></tr>';
 
 
 
@@ -365,8 +360,11 @@
 
 		}
 
+		var hi = 0;
+
 		function addData(position) {
 			console.log("data filling : " + position)
+			hi = position;
 			let datac = "";
 			datac += "<p>Images : ";
 			for (let i = 0; i < data[position]["images"].length; i++) {
@@ -393,6 +391,33 @@
 			
 			datac += "<p>Tags : " + data[position]["tags"] + "<p>";
 			modelbody.innerHTML = datac;
+			return false;
+		}
+
+		function doAction() {
+			return removePost(data[hi]["id"])
+		}
+
+		function removePost(postid) {
+			console.log("i got call");
+			var result = window.confirm("Do you really want to remove product with id " + postid + "? you cant recover that it again");
+			if (result == true) {
+				//remove user
+				console.log("remove post");
+				$.ajax(
+					{
+						url: "/marketplace",
+						method: 'POST',
+						contentType: 'application/json',
+						data: JSON.stringify({ 'type': 'r', 'id': postid }),
+						success: function (res) {
+
+							loadData();
+						}
+					}
+				)
+				return false;
+			}
 			return false;
 		}
 	</script>

@@ -5,7 +5,7 @@ const db = require('../config');
 const userRef = db.collection("users");
 const postRef = db.collection("posts");
 const productsRef = db.collection("products");
-const responseRef = db.collection("responses");
+const responseRef = db.collection("reports");
 
 var uc = 0;
 var pc = 0;
