@@ -26,10 +26,12 @@ app.use(express.static('public'));
 //app.set('layouts', '/layouts/main');
 app.set('view engine', 'ejs')
 
-app.use('/', require('./routes/dashbord'));
+//app.use('/', require('./routes/dashbord'));
 
 
 //routes
+app.use('/signin', require('./routes/signin'));
+app.use('/signup', require('./routes/signup'));
 app.use('/dashbord', require('./routes/dashbord'));
 app.use('/users', require('./routes/users'));
 app.use('/marketplace', require('./routes/marketplace'));
@@ -37,6 +39,7 @@ app.use('/posts', require('./routes/posts'));
 app.use('/communities', require('./routes/communities'));
 app.use('/feedback', require('./routes/feedback'));
 app.use('/report', require('./routes/report'));
+
 
 
 
