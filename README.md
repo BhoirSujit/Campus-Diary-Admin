@@ -4,19 +4,19 @@ admin page to govern campus diary socail media app
 
 
 ## Screenshot
-# Login
+- #### Login
 ![image](https://github.com/BhoirSujit/Campus-Diary-Admin/assets/92661835/e185670d-e514-4ef1-8794-9fcea0dc0cb5)
 
-# Dashboard
+- #### Dashboard
 ![image](https://github.com/BhoirSujit/Campus-Diary-Admin/assets/92661835/80f8f6e7-a911-4de4-8e6f-e00ea0d960ca)
 
-# User management
+- #### User management
 ![image](https://github.com/BhoirSujit/Campus-Diary-Admin/assets/92661835/e36d5747-76a0-4232-8773-bdd65525d4f1)
 
-# Post Management
+- #### Post Management
 ![image](https://github.com/BhoirSujit/Campus-Diary-Admin/assets/92661835/4ca223d6-e12c-408f-879a-ac3b38fa1e57)
 
-# Marketplace Management
+- #### Marketplace Management
 ![image](https://github.com/BhoirSujit/Campus-Diary-Admin/assets/92661835/6452d946-9a73-4028-877b-9b5b5e2994c9)
 
 
