@@ -45,5 +45,5 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 ## Configure app
 
-Open `Campus-Diary-Admin/secrete.json` then edit it with your settings. You will need:
+Open `Campus-Diary-Admin/campus-diary-33019-firebase-adminsdk-xbfhv-29b6203fb5.json` then edit it with your settings. You will need:
 add your server configuration file
